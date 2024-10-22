@@ -1,15 +1,16 @@
 package com.wmj.findcep.model;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnTransformer;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
+@Table(name = "log_entity")
 public class LogEntity {
 
     @Id
@@ -19,8 +20,10 @@ public class LogEntity {
     private String cep;
 
     @Column(columnDefinition = "jsonb")
-    @Lob
+//    @Convert(converter = JsonColumnConverter.class)
+    @ColumnTransformer(write = "?::jsonb")
     private String response;
 
-    private LocalDateTime timestamp;
+    @Column(name = "timestamp", nullable = false)
+    private LocalDateTime receiving;
 }
