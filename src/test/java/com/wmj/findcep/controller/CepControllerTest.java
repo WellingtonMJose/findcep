@@ -1,8 +1,6 @@
 package com.wmj.findcep.controller;
 
-import com.wmj.findcep.model.Endereco;
-import com.wmj.findcep.model.Result;
-import com.wmj.findcep.service.CepService;
+import com.wmj.findcep.model.response.Result;
 import com.wmj.findcep.service.Processor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

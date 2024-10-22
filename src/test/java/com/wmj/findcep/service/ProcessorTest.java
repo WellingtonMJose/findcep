@@ -1,5 +1,6 @@
 package com.wmj.findcep.service;
 
+import com.google.gson.JsonObject;
 import com.wmj.findcep.model.Endereco;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -40,7 +41,7 @@ class ProcessorTest {
         processor.process("2354252");
 
         Mockito.verify(cepService).getCep(Mockito.anyString());
-        Mockito.verify(logService).save(Mockito.anyString(), Mockito.anyString());
+        Mockito.verify(logService).save(Mockito.anyString(), Mockito.any(JsonObject.class));
     }
 
     @Test

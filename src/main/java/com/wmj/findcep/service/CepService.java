@@ -1,5 +1,6 @@
 package com.wmj.findcep.service;
 
+import com.google.gson.JsonObject;
 import com.wmj.findcep.model.Endereco;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

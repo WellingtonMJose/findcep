@@ -1,11 +1,7 @@
 package com.wmj.findcep.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.google.gson.JsonObject;
 import com.wmj.findcep.model.Endereco;
-import com.wmj.findcep.model.Result;
-import com.wmj.findcep.service.CepService;
-import com.wmj.findcep.service.LogService;
+import com.wmj.findcep.model.response.Result;
 import com.wmj.findcep.service.Processor;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
@@ -24,7 +20,8 @@ public class CepController {
 
     @GetMapping("/{cep}")
     @Operation(summary = "Buscar cep")
-    public ResponseEntity<Result> findCep(@PathVariable String cep) {
-        return ResponseEntity.ok(processor.process(cep));
+    public ResponseEntity<Result<Endereco>> findCep(@PathVariable String cep) {
+        Result<Endereco> process = processor.process(cep);
+        return ResponseEntity.status(process.getHttpStatus()).body(process);
     }
 }

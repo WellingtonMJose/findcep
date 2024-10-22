@@ -15,10 +15,10 @@ public class LogService {
 
     private final LogRepository logRepository;
 
-    public void save(String cep, String response) {
+    public void save(String cep, JsonObject response) {
         LogEntity logEntity = new LogEntity();
         logEntity.setCep(cep);
-        logEntity.setResponse(response);
+        logEntity.setResponse(response.toString());
         logEntity.setReceiving(LocalDateTime.now());
         logRepository.save(logEntity);
     }

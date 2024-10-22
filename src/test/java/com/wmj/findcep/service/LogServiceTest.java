@@ -1,5 +1,6 @@
 package com.wmj.findcep.service;
 
+import com.google.gson.JsonObject;
 import com.wmj.findcep.model.LogEntity;
 import com.wmj.findcep.repository.LogRepository;
 import org.junit.jupiter.api.Assertions;
@@ -30,14 +31,15 @@ class LogServiceTest {
 
     @Test
     void save() {
-        logService.save("0395423","{\n" +
-                "   \"cep\": \"01201-050\",\n" +
-                "   \"logradouro\": \"PRACA OLAVO BILAC\",\n" +
-                "   \"bairro\": \"CAMPOS ELISEOS\",\n" +
-                "   \"localidade\": \"São Paulo\",\n" +
-                "   \"uf\": \"SP\",\n" +
-                "   \"ddd\": \"11\"\n" +
-                "   } ");
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("cep", "0395423");
+        jsonObject.addProperty("logradouro", "PRACA OLAVO BILAC");
+        jsonObject.addProperty("bairro", "CAMPOS ELISEOS");
+        jsonObject.addProperty("localidade", "São Paulo");
+        jsonObject.addProperty("uf", "SP");
+        jsonObject.addProperty("ddd", "11");
+
+        logService.save("0395423",jsonObject);
 
         Mockito.verify(logRepository).save(Mockito.any(LogEntity.class));
     }
